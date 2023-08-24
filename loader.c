@@ -49,11 +49,6 @@ void load_elf_header(int fd) {
 
 void load_program_headers(int fd) {
     phdr = (Elf32_Phdr *)malloc(ehdr->e_phentsize * ehdr->e_phnum);
-    if (!phdr) {
-        printf("Memory allocation error");
-        close(fd);
-        exit(1);
-    }
 
     lseek(fd, ehdr->e_phoff, SEEK_SET);
     if (read(fd, phdr, ehdr->e_phentsize * ehdr->e_phnum) != ehdr->e_phentsize * ehdr->e_phnum) {
@@ -93,7 +88,7 @@ void map_and_run_executable(int fd) {
 void run_entry_point(void *entry_point) {
     int (*_start)() = (int (*)())entry_point;
     int result = _start();
-    printf("User _start return value = %d\n", result);
+    printf("output: %d\n", result);
 }
 
 void close_file_descriptor(int fd) {
@@ -115,13 +110,7 @@ void load_and_run_elf(char **exe) {
 }
 
 int main(int argc, char **argv) {
-    if (argc != 2) {
-        printf("Usage: %s <ELF Executable> \n", argv[0]);
-        exit(1);
-    }
-
     load_and_run_elf(argv);
     loader_cleanup();
-
     return 0;
 }
