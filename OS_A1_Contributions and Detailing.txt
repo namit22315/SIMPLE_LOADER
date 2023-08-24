@@ -1,0 +1,31 @@
+Contributions
+Namit Jain(2022315)-
+loader cleanup function
+load elf header function
+map and run executable function
+run entry point function
+load and run function function
+Optimization and Debugging
+Github upload
+
+Pranav Tanwar(2022368)-
+free elf header function
+free program headers function
+load program header function
+map and run executable function
+run entry point function
+main function
+Optimization and debugging
+Contributions and zip file
+
+Description-
+The program performs the task of a loader, which takes an executable file, in this case fib, made from the file fib.c, and loads it into the memory to be executed.
+The loader cleanup function calls the free_elf_header and free_program_headers functions, which free the pointers for the elf header and program header respectively.
+The load functions allocate memory to the elf and program headers respectively.
+The map and run executable function declares our entry point, memory maps the segments, and then locates the entry point within the relevant segment.
+The run entry point function typecasts the entry point and calls it, printing the value of the _start.
+The load and run function opens the file descriptor and calls the load functions, the map and run function, and and the fucntion to close the file descriptor.
+The main function calls the load and run function, and the loader cleanup function.
+
+github link:-
+https://github.com/namit22315/assignment1_operating_systems_group_67
